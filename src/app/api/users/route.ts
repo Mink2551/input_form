@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '../../../../utils/db'; // หรือ 'lib/mongodb'
+import connectDB from '../../../../utils/db';
 import User from '../../../../models/User';
 
 export async function POST(req: NextRequest) {
@@ -11,15 +11,24 @@ export async function POST(req: NextRequest) {
     await newUser.save();
 
     return NextResponse.json({ message: 'บันทึกข้อมูลเรียบร้อย' }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Error saving user:', error);
     return NextResponse.json(
-      { message: 'เกิดข้อผิดพลาดในการบันทึก', error },
+      { message: 'เกิดข้อผิดพลาดในการบันทึก', error: error.message },
       { status: 400 }
     );
   }
 }
 
 export async function GET(req: NextRequest) {
-  console.log(req)
-  return NextResponse.json({ message: 'GET request received' });
+  try {
+    console.log(req);
+    return NextResponse.json({ message: 'GET request received' });
+  } catch (error: any) {
+    console.error('Error fetching data:', error);
+    return NextResponse.json(
+      { message: 'เกิดข้อผิดพลาดในการดึงข้อมูล', error: error.message },
+      { status: 400 }
+    );
+  }
 }
