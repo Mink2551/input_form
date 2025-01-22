@@ -58,12 +58,15 @@ export default function Home() {
         });
   
         // Optional: ทำให้แสดงข้อความชั่วคราวแล้วเคลียร์
+        console.log(message)
+        console.log(data)
         setTimeout(() => window.location.reload(), 1000);
       } else {
         setMessage('เกิดข้อผิดพลาดในการบันทึก');
       }
     } catch (error) {
       setMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+      console.log(error)
     }
   };
   
