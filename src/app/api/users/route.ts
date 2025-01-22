@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     await newUser.save();
 
     return NextResponse.json({ message: 'บันทึกข้อมูลเรียบร้อย' }, { status: 201 });
-  } catch (error: unknown) {
+  } catch (error) {
     console.error('Error saving user:', error);
     if (error instanceof Error) {
       return NextResponse.json(
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   try {
     console.log(req);
     return NextResponse.json({ message: 'GET request received' });
-  } catch (error: unknown) {
+  } catch (error) {
     console.error('Error fetching data:', error);
     if (error instanceof Error) {
       return NextResponse.json(

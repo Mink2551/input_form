@@ -63,7 +63,7 @@ export default function Home() {
           status: 'wating',
         });
         console.log(message)
-        setTimeout(() => window.location.reload(), 1000);
+        setTimeout(() => window.location.reload(), 100);
       } else {
         setMessage('เกิดข้อผิดพลาดในการบันทึก');
       }
