@@ -3,7 +3,6 @@
 import { useState } from "react";
 import TopCard from "./Components/Top_Card/TopCard";
 
-
 export default function Home() {
   const [form, setForm] = useState({
     name: '',
@@ -16,6 +15,7 @@ export default function Home() {
     status: 'wating',
   });
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false); // สถานะการส่งข้อมูล
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,33 +23,35 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!form.name || !form.surname || !form.studentID || !form.introductionSelf || !form.ratedSelf || !form.level || !form.classRoom) {
       setMessage('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;
     }
-  
+
     if (Number(form.ratedSelf) < 0 || Number(form.ratedSelf) > 10) {
       setMessage('กรุณากรอกคะแนนให้ถูกต้อง (0-10)');
       return;
     }
-  
+
+    setIsSubmitting(true); // ตั้งค่าสถานะการกำลังส่งข้อมูล
+
     try {
       const response = await fetch('/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-  
+
       if (!response.ok) {
         setMessage('เกิดข้อผิดพลาดในการบันทึก');
+        setIsSubmitting(false); // ตั้งสถานะการส่งข้อมูลเป็น false เมื่อเกิดข้อผิดพลาด
         return;
       }
-  
-      // Check if response has content before parsing
+
       const text = await response.text();
       const data = text ? JSON.parse(text) : null;
-  
+
       if (data) {
         setMessage('บันทึกข้อมูลเรียบร้อย');
         setForm({
@@ -62,7 +64,7 @@ export default function Home() {
           classRoom: '',
           status: 'wating',
         });
-        console.log(message)
+        console.log(message);
         setTimeout(() => window.location.reload(), 100);
       } else {
         setMessage('เกิดข้อผิดพลาดในการบันทึก');
@@ -70,8 +72,10 @@ export default function Home() {
     } catch (error) {
       setMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ');
       console.error(error);
+    } finally {
+      setIsSubmitting(false); // ตั้งสถานะการส่งข้อมูลเป็น false เมื่อการส่งข้อมูลเสร็จสิ้น
     }
-  };  
+  };
 
   return (
     <main className="min-h-screen mt-10">
@@ -179,7 +183,13 @@ export default function Home() {
             </div>
 
             <div>
-              <button type="submit" className="my-5 px-3 py-1 bg-SC_Red2 text-SC_White font-bold rounded-lg  shadow-2xl border-r-4 border-b-4 hover:bg-opacity-80 hover:border-opacity-80 transition-all border-SC_Red3">Submit</button>
+              <button 
+                type="submit" 
+                className={`my-5 px-3 py-1 bg-SC_Red2 text-SC_White font-bold rounded-lg shadow-2xl border-r-4 border-b-4 hover:bg-opacity-80 hover:border-opacity-80 transition-all border-SC_Red3 ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
+                disabled={isSubmitting} // ปิดการใช้งานปุ่มเมื่อกำลังส่งข้อมูล
+              >
+                {isSubmitting ? 'กำลังส่งข้อมูล...' : 'Submit'}
+              </button>
             </div>
           </form>
         </div>
