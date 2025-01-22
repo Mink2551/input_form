@@ -15,7 +15,7 @@ const connectDB = async () => {
   
   if (!cached.promise) {
       cached.promise = mongoose.connect(MONGODB_URI, {
-          dbName: 'sc-admissions',
+          dbName: 'scadmis',
       }).then((mongoose) => mongoose);
   }
   

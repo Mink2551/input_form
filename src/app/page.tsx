@@ -13,6 +13,7 @@ export default function Home() {
     ratedSelf: '',
     level: '',
     classRoom: '',
+    status: 'wating',
   });
   const [message, setMessage] = useState('');
 
@@ -23,13 +24,11 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    // ตรวจสอบว่า input ทุกตัวมีค่าหรือไม่
     if (!form.name || !form.surname || !form.studentID || !form.introductionSelf || !form.ratedSelf || !form.level || !form.classRoom) {
       setMessage('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;
     }
   
-    // ตรวจสอบให้ ratedSelf อยู่ในช่วง 0-10
     if (Number(form.ratedSelf) < 0 || Number(form.ratedSelf) > 10) {
       setMessage('กรุณากรอกคะแนนให้ถูกต้อง (0-10)');
       return;
@@ -42,11 +41,17 @@ export default function Home() {
         body: JSON.stringify(form),
       });
   
-      const data = await response.json();
-      if (response.ok) {
+      if (!response.ok) {
+        setMessage('เกิดข้อผิดพลาดในการบันทึก');
+        return;
+      }
+  
+      // Check if response has content before parsing
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : null;
+  
+      if (data) {
         setMessage('บันทึกข้อมูลเรียบร้อย');
-        
-        // ล้างข้อมูลฟอร์มหลังจากบันทึกสำเร็จ
         setForm({
           name: '',
           surname: '',
@@ -55,21 +60,18 @@ export default function Home() {
           ratedSelf: '',
           level: '',
           classRoom: '',
+          status: 'wating',
         });
-  
-        // Optional: ทำให้แสดงข้อความชั่วคราวแล้วเคลียร์
         console.log(message)
-        console.log(data)
         setTimeout(() => window.location.reload(), 1000);
       } else {
         setMessage('เกิดข้อผิดพลาดในการบันทึก');
       }
     } catch (error) {
       setMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ');
-      console.log(error)
+      console.error(error);
     }
-  };
-  
+  };  
 
   return (
     <main className="min-h-screen mt-10">

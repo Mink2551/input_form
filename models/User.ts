@@ -8,6 +8,7 @@ export interface IUser extends Document {
   ratedSelf: number;
   level: string;
   classRoom: string;
+  status: string;
 }
 
 const UserSchema: Schema = new Schema({
@@ -18,6 +19,7 @@ const UserSchema: Schema = new Schema({
   ratedSelf: { type: Number, required: true },
   level: { type: String, required: true },
   classRoom: { type: String, required: true },
+  status: { type: String, required: true },
 });
 
 export default mongoose.models.User || mongoose.model<IUser>('User', UserSchema);

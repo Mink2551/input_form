@@ -2,13 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '../../../../utils/db'; // หรือ 'lib/mongodb'
 import User from '../../../../models/User';
 
-const MONGODB_URI = process.env.MONGODB_URI || '';
-
-if (!MONGODB_URI) {
-    console.warn('MONGODB_URI is not defined. Please set it in your environment variables.');
-    throw new Error('MONGODB_URI is missing');
-}
-
 export async function POST(req: NextRequest) {
   await connectDB();
 
