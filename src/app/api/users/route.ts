@@ -11,10 +11,10 @@ export async function POST(req: NextRequest) {
     await newUser.save();
 
     return NextResponse.json({ message: 'บันทึกข้อมูลเรียบร้อย' }, { status: 201 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error saving user:', error);
     return NextResponse.json(
-      { message: 'เกิดข้อผิดพลาดในการบันทึก', error: error.message },
+      { message: 'เกิดข้อผิดพลาดในการบันทึก', error },
       { status: 400 }
     );
   }
@@ -24,10 +24,10 @@ export async function GET(req: NextRequest) {
   try {
     console.log(req);
     return NextResponse.json({ message: 'GET request received' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error fetching data:', error);
     return NextResponse.json(
-      { message: 'เกิดข้อผิดพลาดในการดึงข้อมูล', error: error.message },
+      { message: 'เกิดข้อผิดพลาดในการดึงข้อมูล', error },
       { status: 400 }
     );
   }
