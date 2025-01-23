@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   await connectDB();
+  console.log(req)
   const users = await User.find({});
   return NextResponse.json({ users });
 }
