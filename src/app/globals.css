@@ -12,3 +12,11 @@ html, body {
     font-family: inherit;  /* ทุกองค์ประกอบใช้ฟอนต์จาก body */
   }
 
+.bg-dashboard {
+  background: linear-gradient(to bottom right, rgb(255, 187, 187), rgb(255, 181, 255));
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}

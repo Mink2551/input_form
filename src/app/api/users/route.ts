@@ -27,20 +27,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  try {
-    console.log(req);
-    return NextResponse.json({ message: 'GET request received' });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { message: 'เกิดข้อผิดพลาดในการดึงข้อมูล', error: error.message },
-        { status: 400 }
-      );
-    }
-    return NextResponse.json(
-      { message: 'เกิดข้อผิดพลาดในการดึงข้อมูล', error: 'Unknown error' },
-      { status: 400 }
-    );
-  }
+  await connectDB();
+  const users = await User.find({});
+  return NextResponse.json({ users });
 }
