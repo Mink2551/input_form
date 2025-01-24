@@ -11,7 +11,7 @@ interface User {
     status: string;
   }
 
-function tables() {
+function members() {
     const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     const [users, setUsers] = useState<User[]>([]);
 
@@ -46,17 +46,9 @@ function tables() {
 
   return (
     <div>
-      {windowSize.width >= 720?
-      (
-        <div></div>
-      )
-      :
-      (
-        <div></div>
-      )
-      }
+      
     </div>
   )
 }
 
-export default tables
+export default members
