@@ -19,8 +19,8 @@ interface User {
 }
 
 function Overview() {
-  const [users, setUsers] = useState<User[]>([]);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [users, setUsers] = useState<User[]>([]);
 
   const getUsers = async () => {
     try {
@@ -39,16 +39,16 @@ function Overview() {
       console.error('Error fetching users:', error);
     }
   };
-
+  
+  useEffect(() => {
+    getUsers();
+  }, []);
+  
   useEffect(() => {
     const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    getUsers();
   }, []);
 
   // Calculate percentage of users in each status
