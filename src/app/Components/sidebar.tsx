@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Logo from '../../../public/logo_sc.png';
 import { MdMenuOpen, MdOutlineMenu, MdDisplaySettings } from "react-icons/md";
@@ -25,20 +24,11 @@ const SidebarElements: React.FC<{ pageState: string; handlePageState: (page: str
   );
 };
 
-export default function Sidebar() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentPage = searchParams.get('page') || 'overview';
-
+export default function Sidebar({ pageState, onNavigate }: { pageState: string; onNavigate: (page: string) => void }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   const handleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
-  // อัพเดต URL เมื่อคลิกเปลี่ยนหน้า
-  const handlePageState = (page: string) => {
-    router.push(`/DashBoard/main/?page=${page}`, { scroll: false });  // scroll: false จะช่วยไม่ให้หน้าเลื่อนไปด้านบน
-  };
 
   useEffect(() => {
     const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
@@ -56,7 +46,7 @@ export default function Sidebar() {
               <MdMenuOpen />
             </div>
             <Image alt="SC Logo" width={60} className="mx-auto relative top-2" src={Logo} />
-            <SidebarElements pageState={currentPage} handlePageState={handlePageState} />
+            <SidebarElements pageState={pageState} handlePageState={onNavigate} />
           </div>
         ) : (
           <div className="h-[90vh] cursor-pointer -translate-x-[115%] bg-SC_Cream2 rounded-2xl shadow-2xl duration-300">
@@ -64,13 +54,13 @@ export default function Sidebar() {
               <MdOutlineMenu />
             </div>
             <Image alt="SC Logo" width={60} className="mx-auto relative top-2" src={Logo} />
-            <SidebarElements pageState={currentPage} handlePageState={handlePageState} />
+            <SidebarElements pageState={pageState} handlePageState={onNavigate} />
           </div>
         )
       ) : (
         <div className="h-[90vh] bg-SC_Cream2 rounded-2xl shadow-2xl w-[70px]">
           <Image alt="SC Logo" width={60} className="mx-auto relative top-2" src={Logo} />
-          <SidebarElements pageState={currentPage} handlePageState={handlePageState} />
+          <SidebarElements pageState={pageState} handlePageState={onNavigate} />
         </div>
       )}
     </div>

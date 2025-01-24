@@ -11,7 +11,7 @@ interface User {
     status: string;
   }
 
-function tables() {
+function Tables() {
     const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     const [users, setUsers] = useState<User[]>([]);
 
@@ -48,15 +48,21 @@ function tables() {
     <div>
       {windowSize.width >= 720?
       (
-        <div></div>
+        <div>
+
+        </div>
       )
       :
       (
-        <div></div>
+        <div>
+          {users.map((user) => (
+            <div key={user.studentID}>{user.name}</div>
+          ))}
+        </div>
       )
       }
     </div>
   )
 }
 
-export default tables
+export default Tables
