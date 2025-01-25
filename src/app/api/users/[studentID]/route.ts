@@ -7,9 +7,7 @@ export async function GET(
   { params }: { params: { studentID: string } }
 ) {
   try {
-    // Ensure studentID is received correctly
-    console.log(req)
-    if (!params || !params.studentID) {
+    if (!params?.studentID) {
       console.error("Error: studentID is missing");
       return NextResponse.json({ error: "studentID is missing" }, { status: 400 });
     }
