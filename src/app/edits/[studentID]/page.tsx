@@ -59,12 +59,6 @@ const QuickChange = ({ userID }: { userID: string }): JSX.Element => {
 function EditsUserPage({ params }: { params: Promise<{ studentID: string }> }) {
   const [studentID, setStudentID] = useState<string | null>(null);
   const [users, setUsers] = useState<User[]>([]);
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const router = useRouter();
 
   useEffect(() => {
     params.then((resolvedParams) => {
@@ -95,15 +89,6 @@ function EditsUserPage({ params }: { params: Promise<{ studentID: string }> }) {
       console.error("Error fetching users:", error);
     }
   };
-
-  useEffect(() => {
-    const handleResize = () =>
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   if (!studentID) {
     return <div>Loading...</div>;
