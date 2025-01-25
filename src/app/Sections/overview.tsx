@@ -206,6 +206,27 @@ function Overview() {
             <AverageDisplay resp='pc' header="Average" type="circle" />
             <AverageDisplay resp='pc' header="" type="graph" />
           </div>
+
+          {/* Show Frog */}
+          <div className='border-2 rounded-xl shadow-xl border-white py-3 px-5'>
+            <div className="overflow-x-auto">
+            <h3 className='font-bold text-orange-400 text-2xl border-2 border-white w-fit px-2 py-1 rounded-xl animate-pulse my-5'>Frog</h3>
+              <div className="flex w-[85vw] flex-wrap gap-3">
+                <div className="flex overflow-x-auto">
+                  {users.filter((user) => user.status === 'frog').map((user) => (
+                  <div key={user.studentID} className="bg-SC_Cream2 rounded-2xl ml-10 p-4 min-w-[260px]">
+                  <h2 className="text-xl uppercase text-SC_Red4 font-bold">{user.name} {user.surname}</h2>
+                  <p className="text-SC_Red2">ID: {user.studentID}</p>
+                  <p className="text-SC_Red2">Classroom: {user.level}{user.classRoom}</p>
+                  <p className="text-SC_Red2">Status: {user.status}</p>
+                  </div>
+                  ))}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       ) : (
         <div className="min-h-[85vh] mt-10 flex flex-col gap-y-10 rounded-2xl">
@@ -221,6 +242,27 @@ function Overview() {
             <AverageDisplay resp='mobie' header="Average" type="circle" />
             <AverageDisplay resp='mobie' header="" type="graph" />
           </div>
+
+          {/* Show Frog */}
+          <div className='border-2 rounded-xl shadow-xl border-white py-3 pl-4'>
+            <div className="overflow-x-auto">
+            <h3 className='font-bold text-orange-400 text-2xl border-2 border-white w-fit px-2 py-1 rounded-xl animate-pulse my-5'>Frog</h3>
+              <div className="flex w-[85vw] flex-wrap gap-3">
+                <div className="flex overflow-x-auto">
+                  {users.filter((user) => user.status === 'frog').map((user) => (
+                  <div key={user.studentID} className="bg-SC_Cream2 rounded-2xl ml-10 p-4 min-w-[260px]">
+                  <h2 className="text-xl uppercase text-SC_Red4 font-bold">{user.name} {user.surname}</h2>
+                  <p className="text-SC_Red2">ID: {user.studentID}</p>
+                  <p className="text-SC_Red2">Classroom: {user.level}{user.classRoom}</p>
+                  <p className="text-SC_Red2">Status: {user.status}</p>
+                  </div>
+                  ))}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       )}
     </div>

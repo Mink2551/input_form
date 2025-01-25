@@ -103,7 +103,7 @@ function Tables() {
                       <td className='border border-gray-500'>{user.level}</td>
                       <td className='border border-gray-500'>{user.classRoom}</td>
                       <td className="border border-gray-500">{user.ratedSelf}</td>
-                      <td className={`font-medium ${user.status === 'wating'? "text-green-600" : user.status === "pass" ? "text-yellow-600" : user.status === 'notpass' ? "text-SC_Red2" : "text-pink-600"} border border-gray-500`}>{user.status === 'wating'? "Staging" : user.status === 'pass'? "Pass" : user.status === 'notpass'? "Not Pass" : "Members"}</td>
+                      <td className={`font-medium animate-pulse ${user.status === 'wating'? "text-green-600" : user.status === "pass" ? "text-yellow-600" : user.status === 'notpass' ? "text-SC_Red2" : "text-pink-600"} border border-gray-500`}>{user.status === 'wating'? "Staging" : user.status === 'pass'? "Pass" : user.status === 'notpass'? "Not Pass" : "Members"}</td>
                       <td className="border border-gray-500">
                         <Link href={`/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
                       </td>

@@ -125,7 +125,7 @@ export default function Home() {
               <textarea 
                 className='w-[90%] h-[150px] border-l-4 border-SC_Red2 mx-auto mt-3 shadow-xl py-2 text-sm px-4 rounded-lg ' 
                 name="introductionSelf" 
-                placeholder="แนะนำตัวเอง และบอกข้อดีของตัวเอง"
+                placeholder="แนะนำตัวเอง และบอกข้อดีของตัวเอง และเขียนปีการศึกษาตามท้าย"
                 onChange={handleChange}
                 required
               />

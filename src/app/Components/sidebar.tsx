@@ -41,7 +41,7 @@ export default function Sidebar({ pageState, onNavigate }: { pageState: string; 
     <div className="w-[70px] h-[90vh] sticky top-12 left-2">
       {windowSize.width <= 720 ? (
         isSidebarOpen ? (
-          <div className="h-[90vh] cursor-pointer bg-SC_Cream2 rounded-2xl shadow-2xl duration-300">
+          <div className="h-[90vh] cursor-pointer absolute w-[70px] bg-SC_Cream2 rounded-2xl shadow-2xl duration-300">
             <div onClick={handleSidebar} className="absolute -right-8 text-3xl font-bold text-SC_Red1 top-3">
               <MdMenuOpen />
             </div>
@@ -49,7 +49,7 @@ export default function Sidebar({ pageState, onNavigate }: { pageState: string; 
             <SidebarElements pageState={pageState} handlePageState={onNavigate} />
           </div>
         ) : (
-          <div className="h-[90vh] cursor-pointer -translate-x-[115%] bg-SC_Cream2 rounded-2xl shadow-2xl duration-300">
+          <div className="h-[90vh]  cursor-pointer absolute w-[70px] -translate-x-[115%] bg-SC_Cream2 rounded-2xl shadow-2xl duration-300">
             <div onClick={handleSidebar} className="absolute -right-8 text-3xl font-bold text-SC_Red1 top-3">
               <MdOutlineMenu />
             </div>

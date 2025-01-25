@@ -8,7 +8,7 @@ import Tables from '@/app/Sections/tables';
 
 function PageContent({ pageState }: { pageState: string }) {
   return (
-    <div className="flex-grow py-10 mx-5 xl:p-10">
+    <div className="flex-grow py-10 mx-5">
       {pageState === 'overview' && <Overview />}
       {/* {pageState === 'member' && <Adjustment />} */}
       {pageState === 'trophy' && <Tables />}
