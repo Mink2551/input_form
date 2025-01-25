@@ -4,9 +4,11 @@ import User from '../../../../../models/User';
 
 export async function GET(
   req: NextRequest, 
-  { params }: { params: { studentID: string } }
+  context: { params: { studentID: string } }
 ) {
+    console.log(req)
   try {
+    const { params } = context;
     if (!params?.studentID) {
       console.error("Error: studentID is missing");
       return NextResponse.json({ error: "studentID is missing" }, { status: 400 });
