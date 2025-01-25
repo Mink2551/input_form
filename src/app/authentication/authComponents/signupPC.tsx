@@ -1,0 +1,35 @@
+import React from 'react'
+
+function signupPC() {
+  return (
+    <div>
+      <form className='flex flex-col gap-7 my-10'>
+        <input
+          type='text'
+          className='bg-gray-100 border-gray-300 font-medium border-b-2 w-[100%] pr-4 flex mx-auto'
+          placeholder='Enter Your StudentID'
+        />
+        <input
+          type='email'
+          className='bg-gray-100 border-gray-300 font-medium border-b-2 w-[100%] pr-4 flex mx-auto'
+          placeholder='Enter Your Email'
+        />
+        <input
+          type='password'
+          className='bg-gray-100 border-gray-300 font-medium border-b-2 w-[100%] pr-4 flex mx-auto'
+          placeholder='Enter Your Password'
+        />
+        <input
+          type='password'
+          className='bg-gray-100 border-gray-300 font-medium border-b-2 w-[100%] pr-4 flex mx-auto'
+          placeholder='Confirm Your Password'
+        />
+        <button className='w-fit px-4 py-1.5 text-gray-100 shadow-xl hover:bg-SC_Red3 duration-200 font-bold bg-SC_Red2 rounded-xl'>
+          Submit
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export default signupPC

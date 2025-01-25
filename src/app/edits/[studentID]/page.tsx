@@ -69,29 +69,29 @@ function EditsUserPage({ params }: { params: Promise<{ studentID: string }> }) {
   }, [params]);
 
   useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await fetch(`/api/users/${studentID}`, {
+          cache: "no-store",
+          method: "GET",
+        });
+  
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const data = await res.json();
+        setUser(data.user || null);
+        setFormData(data.user || null); // Initialize formData with fetched user data
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+  
     if (studentID) {
       getUser();
     }
-  }, [studentID]);
-
-  const getUser = async () => {
-    try {
-      const res = await fetch(`/api/users/${studentID}`, {
-        cache: "no-store",
-        method: "GET",
-      });
-
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await res.json();
-      setUser(data.user || null);
-      setFormData(data.user || null); // Initialize formData with fetched user data
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
+  }, [studentID]); // No need to add getUser as a dependency here  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
