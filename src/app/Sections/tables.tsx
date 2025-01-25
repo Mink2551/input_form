@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface User {
   name: string;
@@ -102,9 +103,9 @@ function Tables() {
                       <td className='border border-gray-500'>{user.level}</td>
                       <td className='border border-gray-500'>{user.classRoom}</td>
                       <td className="border border-gray-500">{user.ratedSelf}</td>
-                      <td className={`font-medium ${user.status === 'wating'? "text-green-600" : user.status === "pass" ? "text-yellow-600" : user.status === 'notpass' ? "text-SC_Red2" : "text-pink-600"} border border-gray-500`}>{user.status}</td>
+                      <td className={`font-medium ${user.status === 'wating'? "text-green-600" : user.status === "pass" ? "text-yellow-600" : user.status === 'notpass' ? "text-SC_Red2" : "text-pink-600"} border border-gray-500`}>{user.status === 'wating'? "Staging" : user.status === 'pass'? "Pass" : user.status === 'notpass'? "Not Pass" : "Members"}</td>
                       <td className="border border-gray-500">
-                        <button className='w-fit bg-SC_Red2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button>
+                        <Link href={`/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
                       </td>
                     </tr>
                   ))}
@@ -128,7 +129,7 @@ function Tables() {
                   <p><strong>Classroom:</strong> {user.classRoom}</p>
                   <p><strong>Status:</strong> {user.status}</p>
                   <p><strong>Edits:</strong> 
-                    <button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button>
+                    <Link href={`/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
                   </p>
                 </div>
               ))}
