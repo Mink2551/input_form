@@ -14,7 +14,7 @@ const authOptions = {
             },
             async authorize(credentials, req) {
                 const { email, password } = credentials;
-                console.log("Authorization request:", { email, password });
+                console.log("Authorization request:", { email, password, req });
                 try {
                     await connectDB();
 
