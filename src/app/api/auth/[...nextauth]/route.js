@@ -14,8 +14,7 @@ const authOptions = {
             },
             async authorize(credentials, req) {
                 const { email, password } = credentials;
-
-                console.log(req)
+                console.log("Authorization request:", { email, password });
                 try {
                     await connectDB();
 
@@ -29,11 +28,8 @@ const authOptions = {
                         throw new Error("Invalid password.");
                     }
 
-                    // Logging member data to check that studentID is correct
-                    console.log("Member Data:", member);
-
-                    return member
-
+                    console.log("Authenticated Member:", member);
+                    return member;
                 } catch (error) {
                     console.error("Authentication error:", error.message);
                     throw new Error("Invalid email or password.");
@@ -50,23 +46,16 @@ const authOptions = {
     },
     callbacks: {
         async jwt({ token, user }) {
-            // If user exists, add studentID to the token
             if (user) {
                 token.studentid = user.studentid;
             }
 
-            // Log token to verify studentID is added
             console.log("JWT Token:", token);
-
             return token;
         },
         async session({ session, token }) {
-            // Add studentID from token to session
             session.user.studentid = token.studentid;
-
-            // Log session data to verify studentID is available
             console.log("Session Data:", session);
-
             return session;
         },
     },
