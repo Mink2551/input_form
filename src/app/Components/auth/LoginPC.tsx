@@ -1,5 +1,5 @@
 import React from 'react'
-import SigninPC from '@/app/authentication/authComponents/signinPC';
+import SigninPC from '@/app/Sections/authentication/authComponents/signinPC';
 
 function LoginPC({ opa, dura }: { opa: string; dura: string }) {
   return (

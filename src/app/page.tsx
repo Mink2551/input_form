@@ -1,7 +1,9 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TopCard from "./Components/Top_Card/TopCard";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [form, setForm] = useState({
@@ -16,6 +18,14 @@ export default function Home() {
   });
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false); // สถานะการส่งข้อมูล
+  const router = useRouter()
+  const { data : session } = useSession()
+
+  useEffect(() => {
+    if (session) {
+      router.replace('/Sections/DashBoard/main');
+    }
+  }, [session, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });

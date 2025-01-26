@@ -1,5 +1,5 @@
 import React from 'react';
-import SignupPC from '@/app/authentication/authComponents/signupPC';
+import SignupPC from '@/app/Sections/authentication/authComponents/signupPC';
 
 function RegisterPC({ opa, dura }: { opa: string; dura: string }) {
   return (

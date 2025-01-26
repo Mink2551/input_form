@@ -3,6 +3,7 @@
 import { JSX, useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+// import { useSession } from 'next-auth/react';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -21,6 +22,8 @@ interface User {
 function Overview() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [users, setUsers] = useState<User[]>([]);
+
+  // const { data: session } = useSession()
 
   const getUsers = async () => {
     try {

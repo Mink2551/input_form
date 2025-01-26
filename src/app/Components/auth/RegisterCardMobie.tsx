@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import SC_Logo from '../../../../public/logo_sc.png'
-import SignupMobie from '@/app/authentication/authComponents/signupMobie';
+import SignupMobie from '@/app/Sections/authentication/authComponents/signupMobie';
 
 type Props = {
     pageStage: string;

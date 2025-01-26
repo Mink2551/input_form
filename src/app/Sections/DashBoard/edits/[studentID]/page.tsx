@@ -33,7 +33,7 @@ const QuickChange = ({ userID }: { userID: string }): JSX.Element => {
   const handleChanging = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/edits/${searchQuery}`);
+      router.push(`/Sections/DashBoard/edits/${searchQuery}`);
     }
   };
 

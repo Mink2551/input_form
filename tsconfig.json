@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/edit/[studentID]/page", "src/app/api/users/[studentID]/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/edit/[studentID]/page", "src/app/api/users/[studentID]/route.js", "src/app/api/auth/[...nextauth]/route.js", "src/app/Provinders.js", "src/app/Sections/authentication/authComponents/signinPC.jsx"],
   "exclude": ["node_modules"]
 }

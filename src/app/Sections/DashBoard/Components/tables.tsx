@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+// import { useSession } from 'next-auth/react';
 
 interface User {
   name: string;
@@ -13,6 +14,7 @@ interface User {
 }
 
 function Tables() {
+  // const { data: session } = useSession(); // Get the session data
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [users, setUsers] = useState<User[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,7 +68,7 @@ function Tables() {
   return (
     <div className="mt-10 ">
       {/* เพิ่มกล่องค้นหา */}
-      <div className="mb-5 flex right-[10%] absolute text-center">
+      <div className="top-[5%] flex right-[10%] absolute text-center">
         <input
           type="text"
           placeholder="Search by name, surname, or student ID"
@@ -105,7 +107,7 @@ function Tables() {
                       <td className="border border-gray-500">{user.ratedSelf}</td>
                       <td className={`font-medium animate-pulse ${user.status === 'wating'? "text-green-600" : user.status === "pass" ? "text-yellow-600" : user.status === 'notpass' ? "text-SC_Red2" : "text-pink-600"} border border-gray-500`}>{user.status === 'wating'? "Staging" : user.status === 'pass'? "Pass" : user.status === 'notpass'? "Not Pass" : "Members"}</td>
                       <td className="border border-gray-500">
-                        <Link href={`/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
+                          <Link href={`/Sections/DashBoard/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
                       </td>
                     </tr>
                   ))}
@@ -129,7 +131,7 @@ function Tables() {
                   <p><strong>Classroom:</strong> {user.classRoom}</p>
                   <p><strong>Status:</strong> {user.status}</p>
                   <p><strong>Edits:</strong> 
-                    <Link href={`/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
+                    <Link href={`/Sections/DashBoard/edits/${user.studentID}`}><button className='w-fit bg-SC_Red2 ml-2 text-SC_Cream2 font-bold px-2 rounded-md'>More</button></Link>
                   </p>
                 </div>
               ))}
