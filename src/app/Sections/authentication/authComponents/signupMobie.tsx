@@ -93,9 +93,9 @@ function SignupMobile() {
       }),
     });
 
-    if (!resCheckUser.ok) {
-      throw new Error("Network response was not ok");
-    }
+    // if (!resCheckUser.ok) {
+    //   throw new Error("Network response was not ok");
+    // }
 
     const { member } = await resCheckUser.json();
 
@@ -158,6 +158,7 @@ function SignupMobile() {
     }
 
     try {
+
       console.log(`Sending data to /api/auth/register`);
       const res = await fetch("/api/auth/register", {
         method: "POST",
@@ -179,9 +180,14 @@ function SignupMobile() {
           surname,  // ส่งนามสกุล
           level,  // ส่งระดับ
           classRoom,  // ส่งห้องเรียน
-          status
+          status,
         }),
       });
+      
+      if (res.ok) {
+        setError("");
+        setSuccess("Register Success");
+      }
 
       const data = await res.json();
       console.log("Register Response:", data);
@@ -196,11 +202,6 @@ function SignupMobile() {
           status: "members", // เปลี่ยนสถานะเป็น 'member'
         }),
       });
-
-      if (res.ok) {
-        setError("");
-        setSuccess("Register Success");
-      }
 
       const updateStatusData = await updateStatusRes.json();
       console.log("Update Status Response:", updateStatusData);
